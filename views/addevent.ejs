@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Addevent</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<style>
+  body {
+    font-family: 'Segoe UI';
+  }
+
+  h2 {
+    font-weight: 500;
+  }
+
+  .container {
+    background-color: rgb(240, 120, 41);
+    border: 2px solid red;
+    padding-top: 30px;
+    padding-left: 13px;
+    border-radius: 12px;
+    font-weight: 500;
+    line-height: 2px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 600px;
+    margin-top: 10px;
+    margin-bottom: 23px;
+  }
+
+  .cont {
+    padding: 30px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .btn1 {
+    background-color: rgb(55, 189, 55);
+    padding: 5px;
+    width: 80px;
+    border-radius: 18px;
+    outline: none;
+    border: none;
+    font-weight: 700;
+    font-size: 24px;
+    color: white;
+    font-family: 'Segoe UI';
+    margin-bottom: 20px;
+  }
+
+  .btn2 {
+    background-color: #fff;
+    height: 3vh;
+    width: 570px;
+    border-radius: 5px;
+    border: #fff;
+
+  }
+
+  .card {
+    background-color: rgba(102, 202, 102, 0.508);
+    width: 327px;
+
+  }
+
+  .cardp {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 50px;
+  }
+
+  .card-title {
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.739);
+    margin-top: 5px;
+  }
+
+  .card-header {
+    font-weight: bolder;
+    font-size: 23px;
+  }
+
+  .reminder {
+    margin-top: 10px;
+    margin-left: 25px;
+    margin-bottom: -1px;
+    font-weight: 600;
+    font-size: 20px;
+    background-color: #15b638;
+    width: max-content;
+    padding: 1px;
+    color: rgba(255, 255, 255, 0.712);
+    height: 22px;
+    line-height: 20px;
+    visibility: hidden;
+  }
+</style>
+
+<body>
+  <div class="cont">
+    <button type="button" class="btn1">GFG</button>
+    <h2> Event Management App</h2>
+    <!--  ------------------ Add event form ------------ -->
+    <div class="container">
+      <form action="/addevent" method="post">
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" name="title" class="form-control" placeholder="enter title" required>
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" name="date" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn2">Add Event</button>
+        </div>
+      </form>
+    </div>
+
+    <!--  ------------------ Event card ------------ -->
+    <% if(events.length===0){ %>
+      <p> </p>
+      <% } else { %>
+        <div class="cardp">
+          <% events.forEach(event=> { %>
+            <div class="card">
+              <div class="reminder">Reminder On</div>
+              <div class="card-header">
+                <%= event.title %>
+              </div>
+              <div class="card-body">
+                <% const eventDate=new Date(event.date); const dayOfWeek=eventDate.toLocaleString('en-US', {
+                  weekday: 'long' }); %>
+                  <h5 class="card-title">Event On: <%= dayOfWeek %> at 5:30 AM;</h5>
+                  <button onclick="toggleReminder(this)" class="btn btn-primary">Enable reminder</button>
+                  <a href="/delete/<%= event._id %>" class="btn btn-danger">Delete</a>
+                  <a href="/update/<%= event._id %>" class="btn btn-info">Edit</a>
+
+              </div>
+            </div>
+            <% }) %>
+        </div>
+        <% } %>
+  </div>
+
+
+  <script>
+    function toggleReminder(button) {
+      const card = button.closest('.card');
+      const reminder = card.querySelector('.reminder');
+      if (reminder.style.visibility === 'hidden' || !reminder.style.visibility) {
+        reminder.style.visibility = 'visible'; // Show the reminder
+        button.innerText = 'Disable reminder'; // Change button text
+      } else {
+        reminder.style.visibility = 'hidden'; // Hide the reminder
+        button.innerText = 'Enable reminder'; // Change button text
+      }
+    }
+
+  </script>
+
+</body>
+
+</html>
