@@ -21,26 +21,30 @@
   }
 
   h2 {
-    color: #161b62e8;
+    color: #061293e8;
     font-weight: 500;
   }
 
   .container {
-    background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
+    background-image: linear-gradient(-40deg, #b721ff 10%, #21d4fd 100%);
     border: 12px solid rgba(20, 41, 179, 0.346);
-    padding-top: 30px;
-    padding-left: 13px;
+
+    padding-top: 32px;
     border-radius: 12px;
-    font-weight: 500;
-    line-height: 2px;
+    line-height: 8px;
     height: 230px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     width: 670px;
     margin-top: 10px;
-    margin-bottom: 23px;
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1f66ba;
   }
+
+
 
   .cont {
     padding: 30px;
@@ -51,6 +55,7 @@
     flex-direction: column;
   }
 
+  /*  ----------GFG------------- */
   .btn1 {
     background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
     padding: 5px;
@@ -65,20 +70,20 @@
     margin-bottom: 20px;
   }
 
+  /*  ----------ADD Event ------------- */
   .btn2 {
-    background-image: linear-gradient(-20deg, #dcb0ed 0%, #99c99c 100%);
+    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
     height: 32px;
     width: 550px;
     border-radius: 5px;
     border: #22779e;
     font-size: 22px;
     font-weight: bold;
-    color: #0c446e;
+    color: #f1f3ff;
     margin-left: 32px;
-
-
   }
 
+  /*  -------card props- ---------- */
   .card {
     font-size: 0.8rem;
     border-radius: 1.25rem;
@@ -117,12 +122,14 @@
     font-weight: 600;
     font-size: 20px;
     background-color: #15b638;
-    width: max-content;
-    padding: 1px;
+    width: 150px;
+    padding: 5px;
+    text-align: center;
     color: rgba(255, 255, 255, 0.712);
-    height: 22px;
+    height: 32px;
     line-height: 20px;
     visibility: hidden;
+    border-radius: 4px;
   }
 </style>
 
@@ -134,7 +141,7 @@
     <div class="container">
       <form action="/addevent" method="post">
         <div class="form-group">
-          <label>Title</label>
+          <label class="">Title</label>
           <input type="text" name="title" class="form-control" placeholder="enter title" required>
         </div>
         <div class="form-group">
@@ -171,34 +178,6 @@
         </div>
         <% } %>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   <script>
     function toggleReminder(button) {
